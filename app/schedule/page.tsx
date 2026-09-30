@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
 type NextSession = {
   meetingKey: number;
   name: string;
