@@ -4,6 +4,8 @@ import "./schedule.css";
 
 import { useEffect, useState } from "react";
 
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 type NextSession = {
   meetingKey: number;
   name: string;
@@ -247,7 +249,7 @@ export default function SchedulePage() {
     const loadSchedule = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/schedule"
+          `${API_URL}/schedule`
         );
 
         if (!response.ok) {
@@ -321,7 +323,7 @@ export default function SchedulePage() {
     const loadNextSession = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/schedule/next"
+          `${API_URL}/schedule/next`
         );
 
         if (!response.ok) {
@@ -402,7 +404,7 @@ export default function SchedulePage() {
       for (const race of completedRaces) {
         try {
           const response = await fetch(
-            `http://localhost:8000/race-winner/${race.sessionKey}`
+            `${API_URL}/race-winner/${race.sessionKey}`
           );
 
           if (!response.ok) {
@@ -528,9 +530,7 @@ export default function SchedulePage() {
   ) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/session/${meetingKey}/${encodeURIComponent(
-          sessionName
-        )}`
+        `${API_URL}/session/${meetingKey}/${encodeURIComponent(sessionName)}`
       );
 
       if (!response.ok) {

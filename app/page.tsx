@@ -301,7 +301,7 @@ export default function Home() {
 
     const connect = () => {
       socket = new WebSocket(
-        "ws://localhost:8000/ws/live"
+        `${process.env.NEXT_PUBLIC_API_WS_URL}/ws/live`
       );
 
       socket.onopen = () => {
@@ -434,7 +434,7 @@ export default function Home() {
     const loadNextSession = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8000/schedule/next"
+          `${process.env.NEXT_PUBLIC_API_URL}/schedule/next`
         );
 
         if (!response.ok) {
